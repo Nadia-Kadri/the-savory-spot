@@ -1,5 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
+import { format } from "date-fns";
 
 const app = express();
 const port = 3000;
@@ -52,7 +53,7 @@ let breakfastRecipes = [
       6. Serve with honey, maple syrup, fruit, ice cream or frozen yogurt, or enjoy plain!
     `,
     img: "",
-    date: Date.now()
+    date: format(Date.now(), "MMM do, yyyy")
   }
 ]
 
