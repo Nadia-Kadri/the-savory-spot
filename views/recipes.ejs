@@ -8,7 +8,7 @@
         <div class="col-md-6">
           <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <div class="col p-3 d-flex flex-column position-static">
-              <strong class="d-inline-block mb-2 text-primary-emphasis">Breakfast</strong>
+              <strong class="d-inline-block mb-2 text-primary-emphasis"><%= recipe.recipeType[0].toUpperCase() + recipe.recipeType.slice(1) %></strong>
               <h4 class="mb-0"><%= recipe.name %></h4>
               <div class="mb-1 text-body-secondary"><%= recipe.date %></div>
               <p class="card-text mb-auto"><%= recipe.description %></p>
