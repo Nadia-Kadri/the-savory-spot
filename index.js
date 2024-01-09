@@ -37,7 +37,7 @@ app.get("/:recipe", (req, res) => {
 // Post Route for Form Submission
 app.post("/submit", (req, res) => {
   handleFormSubmission(req.body);
-  res.render("submit.ejs");
+  res.render("submit.ejs", { recipe: req.body.name, recipeType: req.body.recipeType });
 });
 
 // Server Running
