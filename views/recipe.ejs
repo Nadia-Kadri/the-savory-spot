@@ -1,0 +1,25 @@
+<%- include("partials/header.ejs") %>
+
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <h2><%= recipe.name %></h2>
+      <p><%= recipe.date %></p>
+      <p><%= recipe.description %></p>
+      <h5>Ingredients:</h5>
+      <ul>
+        <% recipe.ingredients.forEach(ingredient => { %>
+        <li><%= ingredient %></li>
+        <% }) %>
+      </ul>
+      <h5>Instructions:</h5>
+      <p><%= recipe.instructions %></p>
+
+      <button>Edit</button>
+      <button>Delete</button>
+    </div>
+  </div>
+  
+</div>
+
+<%- include("partials/footer.ejs") %>

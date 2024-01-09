@@ -15,6 +15,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/breakfast", (req, res) => {
+  const breakfastRecipes = recipes.filter(recipe => recipe.recipeType === "breakfast");
   res.render("breakfast.ejs", { recipes: breakfastRecipes });
 });
 
@@ -27,10 +28,11 @@ app.get("/dessert", (req, res) => {
 });
 
 app.get("/:recipe", (req, res) => {
-  console.log(req.params);
-  console.log(req.params.recipe);
-  
-  res.end();
+  // console.log(req.params);
+  console.log("data sent to recipe.ejs");
+  const recipe = recipes.find(recipe => recipe.routeName === req.params.recipe);
+  console.log(recipe)
+  res.render("recipe.ejs", { recipe: recipe });
 });
 
 // Post Route for Form Submission
@@ -56,23 +58,11 @@ function handleFormSubmission(formInput) {
     date: format(Date.now(), "MMM do, yyyy")
   }
 
-  switch(recipe.recipeType) {
-    case "breakfast":
-      breakfastRecipes.push(recipe);
-      break;
-    case "dinner":
-      dinnerRecipes.push(recipe);
-      break;
-    case "dessert":
-      dessertRecipes.push(recipe);
-      break;
-    default:
-      break;
-  }
+  recipes.push(recipe);
 }
 
-// Recipe Arrays
-let breakfastRecipes = [
+// Recipe Array
+let recipes = [
   { 
     name: "Best Fluffy Pancakes",
     routeName: "bestfluffypancakes",
@@ -87,12 +77,4 @@ let breakfastRecipes = [
       6. Serve with honey, maple syrup, fruit, ice cream or frozen yogurt, or enjoy plain!`,
     date: format(Date.now(), "MMM do, yyyy")
   }
-]
-
-let dinnerRecipes = [
-
-]
-
-let dessertRecipes = [
-
-]
+];
