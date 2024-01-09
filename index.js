@@ -44,7 +44,9 @@ app.post("/submit", (req, res) => {
 
 // Delete Route to Delete Recipe from Recipes Array
 app.delete("/delete/:recipe", (req, res) => {
-  res.redirect("/" + req.body.recipeType)
+  const recipeIndex = recipes.findIndex(recipe => recipe.routeName === req.params.recipe );
+  recipes.splice(recipeIndex, 1);
+  res.redirect("/" + req.body.recipeType);
 });
 
 // Server Running
