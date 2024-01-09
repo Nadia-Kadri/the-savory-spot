@@ -12,34 +12,29 @@
             </div>
 
             <div class="mb-3">
+              <label for="description" class="form-label">Recipe Description:</label>
+              <input type="text" name="description" class="form-control">
+            </div>
+
+            <div class="mb-3">
               <input type="radio" name="recipeType" value="breakfast">
-              <label for="breakfast">Breakfast</label>
+              <label for="breakfast">Breakfast</label><br/>
               <input type="radio" name="recipeType" value="dinner">
-              <label for="dinner">Dinner</label>
+              <label for="dinner">Dinner</label><br/>
               <input type="radio" name="recipeType" value="dessert">
               <label for="dessert">Dessert</label>
             </div>
+          </div>
 
+          <div class="col-6">
             <div class="mb-3">
               <label for="ingredients" class="form-label">Ingredients:</label>
               <input type="text" name="ingredients" class="form-control">
             </div>
 
             <div class="mb-3">
-              <label for="img" class="form-label">Upload a picture:</label>
-              <input type="file" name="img" class="form-control">
-            </div>            
-          </div>
-
-          <div class="col-6">
-            <div class="mb-3">
-              <label for="description" class="form-label">Recipe Description:</label>
-              <input type="text" name="description" class="form-control">
-            </div>
-
-            <div class="mb-3">
               <label for="instructions" class="form-label">Instructions:</label>
-              <textarea name="instructions" rows="6" class="form-control"></textarea>
+              <textarea name="instructions" rows="5" class="form-control"></textarea>
             </div>
           </div>
         </div>

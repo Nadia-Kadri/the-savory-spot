@@ -4,7 +4,26 @@
 <div class="container-fluid">
   <div class="row justify-content-center">
     <div class="col-lg-10">
-      <p>Breakfast Recipes</p>
+      <div class="row">
+      <% recipes.forEach(recipe => { %>
+        <div class="col-md-6">
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-3 d-flex flex-column position-static">
+              <strong class="d-inline-block mb-2 text-primary-emphasis">Breakfast</strong>
+              <h4 class="mb-0"><%= recipe.name %></h4>
+              <div class="mb-1 text-body-secondary"><%= recipe.date %></div>
+              <p class="card-text mb-auto"><%= recipe.description %></p>
+              <a href="/<%= recipe.routeName %>" class="icon-link gap-1 icon-link-hover stretched-link">
+                Get the Recipe
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+      </div>
     </div>
   </div>
   
