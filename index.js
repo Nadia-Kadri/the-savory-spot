@@ -1,4 +1,5 @@
 import express from "express";
+import methodOverride from "method-override";
 import bodyParser from "body-parser";
 import { format } from "date-fns";
 
@@ -7,6 +8,7 @@ const port = 3000;
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(methodOverride('_method')); // override with POST having ?_method=DELETE
 app.use(express.static("public"));
 
 // Get Routes for Webpages
@@ -40,6 +42,11 @@ app.post("/submit", (req, res) => {
   res.render("submit.ejs", { recipe: req.body.name, recipeType: req.body.recipeType });
 });
 
+// Delete Route to Delete Recipe from Recipes Array
+app.delete("/delete/:recipe", (req, res) => {
+  res.redirect("/" + req.body.recipeType)
+});
+
 // Server Running
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
@@ -60,7 +67,7 @@ function handleFormSubmission(formInput) {
   recipes.push(recipe);
 }
 
-// Recipe Array
+// Recipes Array
 let recipes = [
   { 
     name: "Best Fluffy Pancakes",
