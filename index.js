@@ -1,5 +1,4 @@
 import express from "express";
-import methodOverride from "method-override";
 import bodyParser from "body-parser";
 import { format } from "date-fns";
 
@@ -8,7 +7,6 @@ const port = 3000;
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(methodOverride('_method')); // override with POST having ?_method=DELETE
 app.use(express.static("public"));
 
 // Get Routes for Webpages
@@ -46,7 +44,7 @@ app.post("/submit", (req, res) => {
 app.delete("/delete/:recipe", (req, res) => {
   const recipeIndex = recipes.findIndex(recipe => recipe.routeName === req.params.recipe );
   recipes.splice(recipeIndex, 1);
-  res.redirect("/" + req.body.recipeType);
+  res.send(JSON.stringify("Recipe deleted"));
 });
 
 // Server Running
@@ -65,7 +63,6 @@ function handleFormSubmission(formInput) {
     instructions: formInput.instructions,
     date: format(Date.now(), "MMM do, yyyy")
   }
-
   recipes.push(recipe);
 }
 

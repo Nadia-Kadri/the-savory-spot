@@ -3,25 +3,26 @@
 <div class="container-fluid">
   <div class="row justify-content-center">
     <div class="col-lg-10">
+      <p>Browse the different recipes or add your own!</p>
       <form action="/submit" method="POST">
         <div class="row">
           <div class="col-6">
             <div class="mb-3">
               <label for="name" class="form-label">Recipe Name:</label>
-              <input type="text" name="name" class="form-control">
+              <input type="text" name="name" id="name" class="form-control" autocomplete="on" required>
             </div>
 
             <div class="mb-3">
               <label for="description" class="form-label">Recipe Description:</label>
-              <input type="text" name="description" class="form-control">
+              <input type="text" name="description" id="description" class="form-control" autocomplete="on" required>
             </div>
 
             <div class="mb-3">
-              <input type="radio" name="recipeType" value="breakfast">
+              <input type="radio" name="recipeType" id="breakfast" value="breakfast" required>
               <label for="breakfast">Breakfast</label><br/>
-              <input type="radio" name="recipeType" value="dinner">
+              <input type="radio" name="recipeType" id="dinner" value="dinner" required>
               <label for="dinner">Dinner</label><br/>
-              <input type="radio" name="recipeType" value="dessert">
+              <input type="radio" name="recipeType" id="dessert" value="dessert" required>
               <label for="dessert">Dessert</label>
             </div>
           </div>
@@ -29,12 +30,12 @@
           <div class="col-6">
             <div class="mb-3">
               <label for="ingredients" class="form-label">Ingredients:</label>
-              <input type="text" name="ingredients" class="form-control">
+              <input type="text" name="ingredients" id="ingredients" class="form-control" autocomplete="on" required>
             </div>
 
             <div class="mb-3">
               <label for="instructions" class="form-label">Instructions:</label>
-              <textarea name="instructions" rows="5" class="form-control"></textarea>
+              <textarea name="instructions" id="instructions" rows="5" class="form-control" required></textarea>
             </div>
           </div>
         </div>
@@ -43,10 +44,8 @@
           <input type="submit" value="Submit" class="form-control">
         </div>
       </form>
-      <p>Browse the different recipes or add your own!</p>
     </div>
   </div>
-  
 </div>
 
 <%- include("partials/footer.ejs") %>

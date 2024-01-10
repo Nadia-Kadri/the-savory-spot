@@ -3,6 +3,7 @@
 <div class="container-fluid">
   <div class="row justify-content-center">
     <div class="col-lg-10">
+      
       <h2><%= recipe.name %></h2>
       <p><%= recipe.date %></p>
       <p><%= recipe.description %></p>
@@ -35,11 +36,12 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <!-- Delete Button that Deletes Recipe -->
-              <form method="POST" action="/delete/<%= recipe.routeName %>?_method=DELETE">
-                <input type="hidden" name="recipeType" value="<%= recipe.recipeType %>">
-                <button type="submit" class="btn btn-primary">Delete Recipe</button>
-              </form>
+              <!-- Delete Button that Deletes Recipe from Server -->
+              <button type="button" class="btn btn-primary" id="delete-button" 
+                data-route-name="<%= recipe.routeName %>" 
+                data-recipe-type="<%= recipe.recipeType %>">
+                  Delete Recipe
+              </button>
             </div>
           </div>
         </div>
@@ -47,7 +49,6 @@
 
     </div>
   </div>
-  
 </div>
 
 <%- include("partials/footer.ejs") %>
