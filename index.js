@@ -11,42 +11,48 @@ let lastId = 3;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-// Get Routes for Webpages
+// Get Route for Home Page
 app.get("/", (req, res) => {
   res.render("index.ejs");
 });
 
+// Get Route for Breakfast Page - Gets and Displays All Breakfast Recipes
 app.get("/breakfast", (req, res) => {
   const breakfastRecipes = recipes.filter(recipe => recipe.recipeType === "breakfast");
   res.render("recipes.ejs", { recipes: breakfastRecipes });
 });
 
+// Get Route for Dinner Page - Gets and Displays All Dinner Recipes
 app.get("/dinner", (req, res) => {
   const dinnerRecipes = recipes.filter(recipe => recipe.recipeType === "dinner");
   res.render("recipes.ejs", { recipes: dinnerRecipes });
 });
 
+// Get Route for Dessert Page - Gets and Displays All Dessert Recipes
 app.get("/dessert", (req, res) => {
   const dessertRecipes = recipes.filter(recipe => recipe.recipeType === "dessert");
   res.render("recipes.ejs", { recipes: dessertRecipes });
 });
 
-app.get("/:recipe", (req, res) => {
-  const recipe = recipes.find(recipe => recipe.routeName === req.params.recipe);
+// Get Route for Specific Recipe - Gets and Displays a Specific Recipe by ID
+app.get("/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const recipe = recipes.find(recipe => recipe.id === id);
   res.render("recipe.ejs", { recipe: recipe });
 });
 
-// Post Route for Form Submission
+// Post Route for Form Submission - Creates a New Recipe Entry in Recipes Array and Displays Submit Page
 app.post("/submit", (req, res) => {
   handleFormSubmission(req.body);
   res.render("submit.ejs", { recipe: req.body.name, recipeType: req.body.recipeType });
 });
 
-// Delete Route to Delete Recipe from Recipes Array
-app.delete("/delete/:recipe", (req, res) => {
-  const recipeIndex = recipes.findIndex(recipe => recipe.routeName === req.params.recipe );
+// Delete Route to Delete Specific Recipe from Recipes Array by ID
+app.delete("/delete/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const recipeIndex = recipes.findIndex(recipe => recipe.id === id );
   recipes.splice(recipeIndex, 1);
-  res.send(JSON.stringify("Recipe deleted"));
+  res.json(`Recipe with ID: ${id} has been deleted`);
 });
 
 // Server Running
@@ -54,7 +60,7 @@ app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
 
-// Process User Input and Push to Recipe Array
+// Process User Input and Push New Recipe Object to Recipes Array
 function handleFormSubmission(formInput) {
   const newId = lastId += 1;
   let recipe = {

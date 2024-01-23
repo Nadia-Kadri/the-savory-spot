@@ -5,12 +5,14 @@ if(deleteButton) {
 }
 
 function handleDeleteButtonClick(e) {
-  const button = e.currentTarget
-  const url = "/delete/" + button.dataset.routeName;
+  const button = e.currentTarget;
+  const url = "/delete/" + button.dataset.id;
 
   fetch(url, { method: "DELETE" })
     .then(response => response.json())
-    .then(() => location.replace("/" + button.dataset.recipeType))
-    .catch(err => console.log(`Error: ${err}`))
+    .then((data) => {
+      console.log(data);
+      location.replace("/" + button.dataset.recipeType);
+    })
+    .catch(err => console.log(`Error: ${err}`));
 }
-
