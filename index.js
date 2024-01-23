@@ -5,6 +5,8 @@ import { format } from "date-fns";
 const app = express();
 const port = 3000;
 
+let lastId = 3;
+
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -54,7 +56,9 @@ app.listen(port, () => {
 
 // Process User Input and Push to Recipe Array
 function handleFormSubmission(formInput) {
+  const newId = lastId += 1;
   let recipe = {
+    id: newId,
     name: formInput.name,
     routeName: formInput.name.replace(/\s+/g, "").toLowerCase(),
     recipeType: formInput.recipeType,
@@ -63,12 +67,14 @@ function handleFormSubmission(formInput) {
     instructions: formInput.instructions,
     date: format(Date.now(), "MMM do, yyyy")
   }
+  lastId = newId;
   recipes.push(recipe);
 }
 
 // Recipes Array
 let recipes = [
   { 
+    id: 1,
     name: "Best Fluffy Pancakes",
     routeName: "bestfluffypancakes",
     recipeType: "breakfast",
@@ -83,6 +89,7 @@ let recipes = [
     date: format(1704700000000, "MMM do, yyyy")
   },
   {
+    id: 2,
     name: "Baked Ziti",
     routeName: "bakedziti",
     recipeType: "dinner",
@@ -99,6 +106,7 @@ let recipes = [
     date: format(1704200000000, "MMM do, yyyy")
   },
   {
+    id: 3,
     name: "Chocolate Chip Cookies",
     routeName: "chocolatechipcookies",
     recipeType: "dessert",
